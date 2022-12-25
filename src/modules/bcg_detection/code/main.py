@@ -26,7 +26,7 @@ if file.endswith(".csv"):
     if os.stat(fileName).st_size != 0:
         rawData = pd.read_csv(fileName, sep=",", header=None, skiprows=1).values
         utc_time = rawData[:, 0]
-        data_stream = rawData[:, 1]
+        data_stream = rawData[:, 5]
 
         start_point, end_point, window_shift, fs = 0, 500, 500, 50
         # ==========================================================================================================

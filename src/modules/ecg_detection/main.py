@@ -1,24 +1,30 @@
-# #!/usr/bin/python3
+#!/usr/bin/python3
 
-# import numpy as np
-# import matplotlib.pyplot as plt
-# import pathlib
-# from ecgdetectors import Detectors
+import numpy as np
+import matplotlib.pyplot as plt
+import pathlib
+from ecgdetectors import Detectors
+import os
+import pandas as pd
 
-# current_dir = pathlib.Path(__file__).resolve()
 
-# example_dir = 'datasets\ECG.tsv'
-# unfiltered_ecg_dat = np.loadtxt(example_dir) 
-# unfiltered_ecg = unfiltered_ecg_dat[:, 0]
-# fs = 250
+file = 'datasets\X1001.csv'
 
-# detectors = Detectors(fs)
+if file.endswith(".csv"):
+    fileName = os.path.join(file)
+    if os.stat(fileName).st_size != 0:
+        rawData = pd.read_csv(fileName, sep=",", header=None, skiprows=1).values
+        utc_time = rawData[:, 0]
+        unfiltered_ecg = rawData[:, 3]
+        fs = 1000 #250
 
-# r_peaks = detectors.pan_tompkins_detector(unfiltered_ecg)
+        detectors = Detectors(fs)
 
-# plt.figure()
-# plt.plot(unfiltered_ecg)
-# plt.plot(r_peaks, unfiltered_ecg[r_peaks], 'ro')
-# plt.title("Detected R peaks")
+        r_peaks = detectors.pan_tompkins_detector(unfiltered_ecg)
 
-# plt.show()
+        plt.figure()
+        plt.plot(unfiltered_ecg)
+        plt.plot(r_peaks, unfiltered_ecg[r_peaks], 'ro')
+        plt.title("Detected R peaks")
+
+        plt.show()
