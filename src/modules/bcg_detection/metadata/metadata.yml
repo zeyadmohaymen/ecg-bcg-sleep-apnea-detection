@@ -1,0 +1,17 @@
+metadata_version: 1
+name: 'Nonintrusive Vital Signs Monitoring for Sleep Apnea Patients: A Preliminary
+  Study'
+description: The purpose of the provided manuscripts is to assess the capability of
+  the microbend fiber optic sensor for nonintrusive monitoring of vital signs, i.e.,
+  heart rate and respiration in a clinical setting. Besides,  assessing the capacity
+  of the sensor for nonintrusive sleep apnea detection.
+tags:
+- algorithm
+- signal-processing
+authors:
+- name: Ibrahim Sadek
+  affiliations:
+  - name: Image and Pervasive Access Laboratory (IPAL), CNRS UMI 2955
+corresponding_contributor:
+  name: Ibrahim Sadek
+  email: ibrahimsadek87@gmail.com
