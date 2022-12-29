@@ -18,5 +18,5 @@ if file.endswith(".csv"):
         ecg_data = rawData[:, 3]
         ecg_data = resample(ecg_data, round(50 * len(ecg_data) / 1000))
 
-        bcg_analysis(bcg_data)
-        ecg_analysis(ecg_data)
+        bcg_hr = bcg_analysis(bcg_data)
+        ecg_hr = ecg_analysis(ecg_data)

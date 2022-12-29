@@ -17,5 +17,7 @@ def ecg_analysis(data):
     wd, m = hp.process_segmentwise(data, sample_rate, 10)
     print([round(x, 1) for x in m['bpm']])
 
+    return [round(x, 1) for x in m['bpm']]
+
         # hp.plotter(wd, m)
         # plt.show()
