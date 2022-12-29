@@ -1,6 +1,6 @@
 import numpy as np
 
-from detect_peaks import detect_peaks
+from modules.bcg_detection.detect_peaks import detect_peaks
 
 
 def compute_rate(beats, time, mpd):
@@ -17,3 +17,13 @@ def compute_rate(beats, time, mpd):
         return np.round(bpm_avg, decimals=2), indices
     else:
         return 0.0, 0.0
+
+
+def compute_rate_unknown_time(beats, fs, mpd):
+
+    indices = detect_peaks(beats, mpd=mpd)
+
+    diff_sample = indices[-1] - indices[0] + 1
+    t_N = diff_sample / fs
+    heartRate = (len(indices) - 1) / t_N * 60
+    return np.round(heartRate, decimals=2), indices
