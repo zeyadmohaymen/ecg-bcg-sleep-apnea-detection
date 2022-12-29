@@ -3,6 +3,7 @@ import os
 from modules.bcg_detection.bcg_main import bcg_analysis
 from modules.ecg_detection.ecg_main import ecg_analysis
 import pandas as pd
+import numpy as np
 from scipy.signal import resample
 
 file = 'datasets\X1012.csv'
@@ -20,3 +21,17 @@ if file.endswith(".csv"):
 
         bcg_hr = bcg_analysis(bcg_data)
         ecg_hr = ecg_analysis(ecg_data)
+def errors_calc(ecg,bcg):
+    n=len(ecg)
+    sum=0
+    for i in range(n):
+     sum+=abs(ecg[i]-bcg[i])
+    mean_abs_error=sum/n
+    mean_square_error=np.square(np.subtract(ecg,bcg)).mean() 
+
+    sum=0
+    for i in range(n):
+        sum+=abs(ecg[i]-bcg[i])/ecg[i]
+    mean_abs_percentage_error=sum/n
+
+    return mean_abs_error,mean_square_error,mean_abs_percentage_error    
