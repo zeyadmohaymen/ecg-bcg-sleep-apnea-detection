@@ -93,7 +93,7 @@ def detect_patterns(pt1, pt2, win_size, data, time, plot):
         pt1 = pt2
         pt2 += win_size
 
-    plt.savefig('results/bcg_detection/rawData')
+    # plt.savefig('results/bcg_detection/rawData')
 
     # Remove Body Movements and bed-empty activities
     ind2remove = np.sort(np.append(np.where(event_flags == 3), np.where(event_flags == 2)), axis=None)

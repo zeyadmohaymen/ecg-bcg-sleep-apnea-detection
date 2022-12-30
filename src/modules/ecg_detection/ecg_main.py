@@ -21,27 +21,9 @@ def ecg_analysis(data):
     dc = modwtmra(w, 'bior3.9')
     wavelet_cycle = dc[4]
 
-    # limit = int(math.floor(data.size / 500))
-    # t1, t2, window_length, window_shift = 0, 500, 500, 500
-
-    # all_rate = []
-    # for j in range(0, limit):
-    #     sub_signal = wavelet_cycle[t1:t2]
-    #     if j == 23: print(np.mean(sub_signal))
-    #     wd, m = hp.process(sub_signal, sample_rate)
-    #     if np.isnan(m['bpm']): all_rate.append(all_rate[-1])
-    #     else: all_rate.append(round(m['bpm'], 1))
-    #     t1 = t2
-    #     t2 += window_shift
-    # # all_rate = np.vstack(all_rate).flatten()
-
-    # # print(all_rate)
-    # return all_rate
-
+    # Processes ECG, while segmenting the signal to 10 second windows
+    # Returns a dictionary with signal stats
     wd, m = hp.process_segmentwise(wavelet_cycle, sample_rate, 10)
-    # print([round(x, 1) for x in m['bpm']])
 
+    # Return heartrates
     return [round(x, 1) for x in m['bpm']]
-
-        # hp.plotter(wd, m)
-        # plt.show()
