@@ -2,7 +2,7 @@ import os
 
 from modules.bcg_detection.bcg_main import bcg_analysis
 from modules.ecg_detection.ecg_main import ecg_analysis
-from modules.error_calculations import errors_calc, save_to_txt
+from modules.utils import errors_calc, save_to_txt, plots
 import pandas as pd
 from scipy.signal import resample
 
@@ -40,6 +40,10 @@ def main():
 
             # Save results in .txt file (results/output.txt)
             save_to_txt(os.path.splitext(filename)[0], ecg_hr, bcg_hr, err1, err2, err3)
+
+
+            if filename == 'X1010.csv':
+                plots(ecg_hr, bcg_hr, os.path.splitext(filename)[0])
 
 
 
