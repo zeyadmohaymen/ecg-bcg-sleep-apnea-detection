@@ -41,8 +41,8 @@ def main():
             # Save results in .txt file (results/output.txt)
             save_to_txt(os.path.splitext(filename)[0], ecg_hr, bcg_hr, err1, err2, err3)
 
-
-            if filename == 'X1010.csv':
+            # Save plots for selected patient
+            if filename == 'X1006.csv':
                 plots(ecg_hr, bcg_hr, os.path.splitext(filename)[0])
 
 

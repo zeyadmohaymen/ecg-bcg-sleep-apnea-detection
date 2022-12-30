@@ -49,6 +49,13 @@ def save_to_txt(patient, ecg, bcg, err1, err2, err3):
 
 def plots(ecg, bcg, patient):
 
+    # Boxplots
+    plt.figure(figsize = (9, 5))
+    data = [ecg, bcg]
+    plt.boxplot(data, labels=['ECG', 'BCG'])
+    plt.title(f'{patient}\'s Box Plots')
+    plt.savefig('results/box_plot', bbox_inches='tight')
+
     # Bland-Altman
     sm.graphics.mean_diff_plot(ecg, bcg)
     plt.title(f'{patient}\'s Bland-Altman Plot')
