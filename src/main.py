@@ -56,7 +56,8 @@ def errors_calc(ecg,bcg):
 
 
 # assign directory
-directory = 'E:/filtererdData/'
+directory = 'datasets'
+open('results\output.txt', 'w').close()
 
 # iterate over files in
 # that directory
