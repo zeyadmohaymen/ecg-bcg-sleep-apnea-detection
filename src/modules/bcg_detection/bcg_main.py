@@ -20,7 +20,7 @@ from modules.bcg_detection.data_subplot import data_subplot
 # Main program starts here
 
 def bcg_analysis(data):
-    print('\nstart processing ...')
+    # print('\nstart processing ...')
 
     # file = 'datasets\X1001.csv'
 
@@ -46,7 +46,7 @@ def bcg_analysis(data):
     breathing = remove_nonLinear_trend(breathing, 3)
     breathing = savgol_filter(breathing, 11, 3)
     # ==========================================================================================================
-    w = modwt(movement, 'bior3.9', 4)
+    w = modwt(data_stream, 'bior3.9', 4)
     dc = modwtmra(w, 'bior3.9')
     wavelet_cycle = dc[4]
     # ==========================================================================================================
@@ -57,7 +57,7 @@ def bcg_analysis(data):
     # ==========================================================================================================
     # Heart Rate
     beats = vitals(t1, t2, window_shift, limit, wavelet_cycle, fs, mpd=1, plot=0)
-    print(beats)
+    # print(beats)
     # print('\nHeart Rate Information')
     # print('Minimum pulse : ', np.around(np.min(beats)))
     # print('Maximum pulse : ', np.around(np.max(beats)))
@@ -76,6 +76,6 @@ def bcg_analysis(data):
     t1, t2 = 2500, 2500 * 2
     data_subplot(data_stream, movement, breathing, wavelet_cycle, t1, t2)
     # ==============================================================================================================
-    print('\nEnd processing ...')
+    # print('\nEnd processing ...')
     # ==================================================================================================================
     return beats
