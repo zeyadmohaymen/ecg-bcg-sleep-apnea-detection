@@ -2,10 +2,11 @@ import os
 
 from modules.bcg_detection.bcg_main import bcg_analysis
 from modules.ecg_detection.ecg_main import ecg_analysis
-from modules.utils import errors_calc, save_to_txt, plots
+from modules.utils import errors_calc, save_to_txt, plots, other_plots
 import pandas as pd
 from scipy.signal import resample
-
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
 
 
 
@@ -15,6 +16,9 @@ def main():
     # assign directory
     directory = 'datasets'
     open('results\output.txt', 'w').close()
+
+    ecg = []
+    bcg = []
 
     # iterate over all files in the directory
     for filename in os.listdir(directory):
@@ -35,6 +39,10 @@ def main():
             ecg_hr = ecg_analysis(ecg_data)
             bcg_hr = bcg_analysis(bcg_data)
 
+            if filename != 'X1012.csv':
+                ecg.extend(ecg_hr)
+                bcg.extend(bcg_hr)
+
             # Calculate MAE, RMSE, and MAPE between the two signals
             err1, err2, err3 = errors_calc(ecg_hr, bcg_hr)
 
@@ -44,6 +52,8 @@ def main():
             # Save plots for selected patient
             if filename == 'X1006.csv':
                 plots(ecg_hr, bcg_hr, os.path.splitext(filename)[0])
+
+    other_plots(ecg, bcg)
 
 
 

@@ -69,3 +69,19 @@ def plots(ecg, bcg, patient):
     plt.xlabel('ECG')
     plt.ylabel('BCG')
     plt.savefig('results/pearson_correlation', bbox_inches='tight')
+
+
+def other_plots(ecg, bcg):
+
+    # Bland-Altman
+    sm.graphics.mean_diff_plot(np.array(ecg), np.array(bcg))
+    plt.savefig('results/other/bland_altman_full_data', bbox_inches='tight')
+
+    # Pearson Correlation
+    plt.figure(figsize = (9, 5))
+    plt.scatter(ecg, bcg)
+    pearson_corr_coeff = round(np.corrcoef(ecg, bcg)[0][1], 3)
+    plt.title(f'Pearson Correlation Coefficient of {pearson_corr_coeff}')
+    plt.xlabel('ECG')
+    plt.ylabel('BCG')
+    plt.savefig('results/other/pearson_correlation_full_data', bbox_inches='tight')

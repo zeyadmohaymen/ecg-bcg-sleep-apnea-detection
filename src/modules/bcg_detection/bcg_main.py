@@ -27,24 +27,14 @@ def bcg_analysis(data):
     start_point, end_point, window_shift, fs = 0, 500, 500, 50
     # ==========================================================================================================
     data_stream, utc_time = detect_patterns(start_point, end_point, window_shift, data_stream, utc_time, plot=1)
-    # ==========================================================================================================
-    # BCG signal extraction
-    movement = band_pass_filtering(data_stream, fs, "bcg")
-    # ==========================================================================================================
-    # Respiratory signal extraction
-    breathing = band_pass_filtering(data_stream, fs, "breath")
-    breathing = remove_nonLinear_trend(breathing, 3)
-    breathing = savgol_filter(breathing, 11, 3)
-    # ==========================================================================================================
+    
     w = modwt(data_stream, 'bior3.9', 4)
     dc = modwtmra(w, 'bior3.9')
     wavelet_cycle = dc[4]
     # ==========================================================================================================
     # Vital Signs estimation - (10 seconds window is an optimal size for vital signs measurement)
     t1, t2, window_length, window_shift = 0, 500, 500, 500
-    # hop_size = math.floor((window_length - 1) / 2)
-    limit = int(math.floor(breathing.size / window_shift))
-    # ==========================================================================================================
+    limit = int(math.floor(data_stream.size / window_shift))
     # Heart Rate
     beats = vitals(t1, t2, window_shift, limit, wavelet_cycle, fs, mpd=1, plot=0)
 
