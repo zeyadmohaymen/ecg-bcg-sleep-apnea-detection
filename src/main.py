@@ -3,8 +3,10 @@ import os
 from modules.bcg_detection.bcg_main import bcg_analysis
 from modules.ecg_detection.ecg_main import ecg_analysis
 from modules.error_calculations import errors_calc, save_to_txt
+from modules.plots import box_plot
 import pandas as pd
 from scipy.signal import resample
+import matplotlib.pyplot as plt
 
 
 
@@ -37,9 +39,14 @@ def main():
 
             # Calculate MAE, RMSE, and MAPE between the two signals
             err1, err2, err3 = errors_calc(ecg_hr, bcg_hr)
+            if filename == 'X1001.csv':
+             box_plot(ecg_hr,bcg_hr)
+
+                 
 
             # Save results in .txt file (results/output.txt)
             save_to_txt(os.path.splitext(filename)[0], ecg_hr, bcg_hr, err1, err2, err3)
+
 
 
 
