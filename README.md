@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://socialify.git.ci/zeyadmohaymen/ecg-bcg-sleep-apnea-detection/image?font=Raleway&amp;language=1&amp;name=1&amp;pattern=Signal&amp;theme=Dark" alt="project-image"></p>
 
-<p id="description">A signal processing algorithm that uses simultaneously collected BCG and ECG data and estimates heart rate for apnea detection. Various error metrics and comparative plots are generated to accuracy of heart rate estimation using BCD as compared to ECG.</p>
+<p id="description">A signal processing algorithm that uses simultaneously collected BCG and ECG data and estimates heart rate for apnea detection. Various error metrics and comparative plots are generated to compare the accuracy of heart rate estimation algorithms using BCD as compared to ECG.</p>
   
   <br />
 <h2>🧐 Features</h2>
